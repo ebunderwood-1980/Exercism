@@ -1,7 +1,7 @@
 """Functions which helps the locomotive engineer to keep track of the train."""
 
 
-def get_list_of_wagons():
+def get_list_of_wagons(*args):
     """Return a list of wagons, given an arbitrary amount of wagon numbers.
 
     Parameters:
@@ -10,7 +10,8 @@ def get_list_of_wagons():
     Returns:
         list: A list of wagon numbers.
     """
-    pass
+    (*return_value,) = (*args,)
+    return return_value
 
 
 def fix_list_of_wagons(each_wagons_id, missing_wagons):
@@ -23,10 +24,13 @@ def fix_list_of_wagons(each_wagons_id, missing_wagons):
     Returns:
         list[int]: The corrected list of wagons.
     """
-    pass
+
+    first, second, third, *rest_one = each_wagons_id
+    (*return_value,) = third, *missing_wagons, *rest_one, first, second
+    return return_value
 
 
-def add_missing_stops(route):
+def add_missing_stops(route, **stops):
     """Add missing stops to route dict.
 
     Parameters:
@@ -36,7 +40,10 @@ def add_missing_stops(route):
     Returns:
         dict: The updated route dictionary.
     """
-    pass
+
+    (*stops_list,) = (*stops.values(),)
+    route["stops"] = stops_list
+    return route
 
 
 def extend_route_information(route, more_route_information):
@@ -49,7 +56,7 @@ def extend_route_information(route, more_route_information):
     Returns:
         dict: The extended route information.
     """
-    pass
+    return {**route, **more_route_information}
 
 
 def fix_wagon_depot(wagons_rows):
@@ -61,4 +68,6 @@ def fix_wagon_depot(wagons_rows):
     Returns:
         list[list[tuple]]: the list of rows of wagons.
     """
-    pass
+
+    first, second, third = wagons_rows
+    return [list(item) for item in zip(first, second, third)]
