@@ -46,6 +46,10 @@ def add_missing_stops(route, **stops):
     return route
 
 
+# Alternate Soltuion
+# return {**route, "stops" : list(kwargs.values())}
+
+
 def extend_route_information(route, more_route_information):
     """Extend route information with more_route_information.
 
